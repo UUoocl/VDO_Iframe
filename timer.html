@@ -7,7 +7,7 @@
             // Embedding VDO.Ninja iframe for sending commands
             window.onload = function() {
                 var iframe = document.createElement("iframe");
-                iframe.src = "https://vdo.ninja/?datamode&view=" + streamID;
+                iframe.src = "https://vdo.ninja/?datamode&password=secret&view=" + streamID +"&label=Timer";
                 iframe.style.display = "none"; // Hide the iframe
                 iframe.id = "obsCommander";
                 document.body.appendChild(iframe);

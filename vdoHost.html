@@ -6,17 +6,22 @@
             
             // Embedding VDO.Ninja iframe for sending commands
             window.onload = function() {
-                var iframe = document.createElement("iframe");
-                iframe.src = "https://vdo.ninja/?datamode&push=" + streamID;
+                var iframe = document.getElementById("iframeOBS1");
+                // var iframe = document.createElement("iframe");
+                iframe.src = "https://vdo.ninja/?datamode&password=secret&push=" + streamID +"&label=Host";
                 iframe.style.display = "none"; // Hide the iframe
                 iframe.id = "obsCommander";
+                iframe.name = "newName"
                 document.body.appendChild(iframe);
             };
             </script>
 
-<script id="receive">    
+<script id="fromOBS">    
     // Setup to receive commands from the sender page
+
+    // document.getElementById("obsCommander").addEventListener("message", function (e) {
     window.addEventListener("message", function (e) {
+        console.log("new message received", e)
         if ("dataReceived" in e.data) {
             
             var command = e.data.dataReceived;
@@ -35,7 +40,7 @@
     });
 </script>
 
-<script  id="send">
+<script  id="sendToOBS">
     function sendCommandToOBS(command) {
         var iframe = document.getElementById("obsCommander");
         if (iframe) {
@@ -44,15 +49,13 @@
     }
     
     // Example buttons for starting and stopping a broadcast
-    let messageObj = {"item1": "details to send","item2" : "more cool"}
+    let messageObj = {"item1": "Host Hi"}
     function startBroadcast() { sendCommandToOBS(`${JSON.stringify(messageObj)}`); }
     function stopBroadcast() { sendCommandToOBS('StopStreaming'); }
 </script>
 
-<script id="connectToOBS">
-    
-</script>
 
+<iframe title = "OBS Received" id="iframeOBS1" name="Helloe"> </iframe>
 <button onclick="startBroadcast()">Start Broadcast</button>
 <button onclick="stopBroadcast()">Stop Broadcast</button>
 <div id="log"></div>
