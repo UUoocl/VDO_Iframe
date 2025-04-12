@@ -7,7 +7,7 @@
             // Embedding VDO.Ninja iframe for sending commands
             window.onload = function() {
                 var iframe = document.createElement("iframe");
-                iframe.src = "https://vdo.ninja/?datamode&push=" + streamID;
+                iframe.src = "https://vdo.ninja/?datamode&view=" + streamID;
                 iframe.style.display = "none"; // Hide the iframe
                 iframe.id = "obsCommander";
                 document.body.appendChild(iframe);
@@ -44,7 +44,7 @@
     }
     
     // Example buttons for starting and stopping a broadcast
-    let messageObj = {"item1": "details to send","item2" : "more cool"}
+    let messageObj = {"timer": "message from timer","item2" : "cool time"}
     function startBroadcast() { sendCommandToOBS(`${JSON.stringify(messageObj)}`); }
     function stopBroadcast() { sendCommandToOBS('StopStreaming'); }
 </script>
